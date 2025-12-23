@@ -7,7 +7,7 @@ JWT_SECRET="YOUR_STRONG_RANDOM_SECRET_KEY"
 REDIS_URL="redis://<your-upstack-url>:<port>"
 2. Install DependenciesNavigate to the backend directory and install necessary packages:Bashcd backend
 npm install
-3. Database Migration and SeedingRun the following commands to initialize and populate the database with initial data.⚠️ WARNING: The prisma migrate reset command will drop and recreate all data in your database!Bash# Reset database and run migrations
+3. Database Migration and SeedingRun the following commands to initialize and populate the database with initial data. WARNING: The prisma migrate reset command will drop and recreate all data in your database!Bash# Reset database and run migrations
 npx prisma migrate reset
 
 # Run seed scripts in order: Categories -> [User Creation] -> Transactions
@@ -22,3 +22,4 @@ npm install
 3. Run the Client ApplicationStart the Next.js development server:Bashnpm run dev
 
 The dashboard application will be accessible at http://localhost:3000. Key API EndpointsEndpointMethodAuthenticationPurpose/api/v1/auth/registerPOSTNoneCreate a new user account./api/v1/auth/loginPOSTNoneAuthenticate user and issue JWT./api/v1/dashboardGETBearer TokenRetrieve cached and aggregated financial data for the dashboard view.🎨 Frontend Architecture HighlightsGlobal State Management: Key user and dashboard data is centralized and managed within ui/app/layout.tsx to ensure consistent state across the application.Data Flow: Data fetching is handled using the axios library, securely passing the JWT in the Authorization: Bearer <token> HTTP header.Visualization Logic: The SpendChart.tsx component is dedicated to handling the complex business logic of sorting transactions by date and calculating the running balance for accurate chart representation.
+
